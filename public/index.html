@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration - King of the 1/2</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="registration-container">
+    <div class="header-banner">
+      <h1>ARE YOU THE KING?</h1>
+      <p>Your Kingdom awaits! Register and claim your token!</p>
+    </div>
+
+    <form id="registrationForm" action="/register" method="POST" enctype="multipart/form-data">
+      <div class="form-section">
+        <div class="form-group grid-2">
+          <div>
+            <label>Full Name <span class="required">*</span></label>
+            <input type="text" name="firstName" placeholder="First Name" required />
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <input type="text" name="lastName" placeholder="Last Name" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Mail my token to this address <span class="required">*</span></label>
+          <input type="text" name="streetAddress" placeholder="Street Address" required />
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="streetAddress2" placeholder="Street Address Line 2" />
+        </div>
+
+        <div class="form-group grid-2">
+          <div>
+            <input type="text" name="city" placeholder="City" required />
+          </div>
+          <div>
+            <select name="state" required>
+              <option value="" disabled selected>Please Select</option>
+              <option value="AL">Alabama</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="NC">North Carolina</option>
+              <option value="SC">South Carolina</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="zipCode" placeholder="Zip Code" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email Address <span class="required">*</span></label>
+          <input type="email" name="email" placeholder="example@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number <span class="required">*</span></label>
+          <input type="tel" name="phone" placeholder="(000) 000-0000" required />
+          <small class="hint">Please enter a valid phone number.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Instagram Handle <span class="required">*</span></label>
+          <input type="text" name="instagram" placeholder="Enter your Instagram username" required />
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-group">
+          <label>Bike Year <span class="required">*</span></label>
+          <select name="bikeYear" required>
+            <option value="2027">2027</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Make <span class="required">*</span></label>
+          <select name="make" required>
+            <option value="Suzuki">Suzuki</option>
+            <option value="Yamaha">Yamaha</option>
+            <option value="Kawasaki">Kawasaki</option>
+            <option value="Honda">Honda</option>
+            <option value="BMW">BMW</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Model <span class="required">*</span></label>
+          <select name="model" required>
+            <option value="GSX-R">GSX-R</option>
+            <option value="Hayabusa">Hayabusa</option>
+            <option value="Ninja">Ninja</option>
+            <option value="CBR">CBR</option>
+            <option value="S1000RR">S1000RR</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tuned by:</label>
+          <input type="text" name="tunedBy" placeholder="enter tuner's name" />
+        </div>
+
+        <div class="form-group">
+          <label>Upload a clear photo of your bike, this will be used for stats. <span class="required">*</span></label>
+          <div class="file-drop-zone">
+            <input type="file" name="bikePhoto" accept="image/*" required />
+            <div class="drop-zone-content">
+              <p><strong>Upload a File</strong></p>
+              <p>Drag and drop files here</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <label class="section-title">Choose your class <span class="required">*</span></label>
+        <div class="class-cards">
+          <label class="class-card">
+            <input type="radio" name="selectedClass" value="stock_motor" data-price="150" required />
+            <div class="card-content">
+              <h3>Stock Motor</h3>
+              <p>No fuel regulation<br>No power adder*<br>No work done to top or bottom of motor<br>Peripheral modified parts are permitted</p>
+              <div class="price">$150.00</div>
+            </div>
+          </label>
+
+          <label class="class-card">
+            <input type="radio" name="selectedClass" value="stage_1" data-price="250" />
+            <div class="card-content">
+              <h3>Stage 1</h3>
+              <p>No fuel regulations<br>No power adder*<br>Modified top end<br>Stock crank and pistons<br>Peripheral modified parts are permitted</p>
+              <div class="price">$250.00</div>
+            </div>
+          </label>
+
+          <label class="class-card">
+            <input type="radio" name="selectedClass" value="rwyb" data-price="350" />
+            <div class="card-content">
+              <h3>RWYB</h3>
+              <p>No crying, just race what you got!</p>
+              <div class="price">$350.00</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="total-display">
+          <span>Total</span>
+          <span id="totalAmount">$0.00</span>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <label class="section-title">Payment Methods</label>
+        <div class="payment-options">
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="credit_card" required />
+            <span>Credit Card</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="cash_app" />
+            <span>Cash App Pay</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="photoConsent" required />
+            <span>I authorize the event organizers to use the photos I have submitted for event-related promotional purposes. <span class="required">* REQUIRED</span></span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>Signature <span class="required">*</span></label>
+          <div class="signature-container">
+            <canvas id="signatureCanvas" width="500" height="180"></canvas>
+            <button type="button" id="clearSignatureBtn" class="clear-btn">Clear</button>
+            <input type="hidden" name="signatureData" id="signatureData" required />
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
