@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KING OF THE 1/2 | 1/2 Mile Sportbike Shootout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0b0c0e; color: #f3f4f6; }
+    .font-teko { font-family: 'Teko', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .bg-grid {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .eliminated-photo {
+      filter: grayscale(100%) contrast(130%) brightness(80%);
+    }
+  </style>
+</head>
+<body class="bg-[#0b0c0e] text-gray-200 antialiased selection:bg-amber-500 selection:text-black">
+
+  <!-- NAVIGATION -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-[#0b0c0e]/90 backdrop-blur-md border-b border-gray-800/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-amber-500 flex items-center justify-center font-teko font-bold text-black text-2xl">
+          K
+        </div>
+        <div>
+          <div class="font-teko text-2xl font-bold leading-none tracking-wider text-white">KING OF THE 1/2</div>
+          <div class="text-[10px] text-gray-400 font-mono tracking-widest uppercase">1/2 MILE SPORTBIKE SHOOTOUT</div>
+        </div>
+      </a>
+
+      <!-- Nav Items -->
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-bold tracking-widest uppercase">
+        <a href="#home" class="text-white hover:text-amber-400 transition">HOME</a>
+        <a href="#riders" class="text-gray-300 hover:text-amber-400 transition">RIDERS</a>
+        <a href="#rankings" class="text-gray-300 hover:text-amber-400 transition">RANKINGS</a>
+        <a href="#classes" class="text-gray-300 hover:text-amber-400 transition">CLASSES</a>
+        <a href="/register" class="text-gray-300 hover:text-amber-400 transition">REGISTER</a>
+        <a href="#rules" class="text-gray-300 hover:text-amber-400 transition">RULES</a>
+        <a href="#qa" class="text-gray-300 hover:text-amber-400 transition">Q&A</a>
+        <a href="/admin" class="bg-gray-800 hover:bg-gray-700 text-amber-400 px-3 py-1.5 rounded border border-gray-700 transition">ADMIN</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center bg-grid overflow-hidden border-b border-gray-800/80">
+    <!-- Circle Blueprint Backdrop Watermark -->
+    <div class="absolute right-10 top-1/2 -translate-y-1/2 w-[550px] h-[550px] rounded-full border border-gray-800/40 pointer-events-none hidden md:flex items-center justify-center">
+      <div class="w-[420px] h-[420px] rounded-full border border-gray-800/30 flex items-center justify-center">
+        <span class="font-teko text-8xl font-bold text-gray-800/30">1/2 MILE</span>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      
+      <% if (registeredId) { %>
+        <div class="mb-8 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg flex items-center justify-between">
+          <div>
+            <h4 class="font-bold text-amber-400 text-sm">Registration Complete!</h4>
+            <p class="text-xs text-gray-300">Your unique ID is <span class="font-mono text-amber-300 font-bold bg-black px-2 py-0.5 rounded"><%= registeredId %></span>. You start with 1 Token.</p>
+          </div>
+          <a href="/" class="text-xs text-gray-400 hover:text-white">✕</a>
+        </div>
+      <% } %>
+
+      <div class="max-w-2xl">
+        <div class="text-amber-400 font-teko text-xl tracking-widest mb-2 font-semibold">NATIONWIDE 1/2 MILE COMPETITION</div>
+        <h1 class="font-teko text-8xl sm:text-9xl font-bold leading-none tracking-tight text-white mb-4">
+          RULE THE <br><span class="text-amber-400">HALF.</span>
+        </h1>
+        <p class="text-gray-300 text-lg sm:text-xl font-normal mb-8 max-w-lg">
+          Sportbike riders from across the United States. One token. One bike. One King.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="/register" class="bg-amber-400 hover:bg-amber-300 text-black font-teko text-2xl font-bold px-8 py-3 tracking-wider transition">
+            ENTER THE KINGDOM
+          </a>
+          <a href="#rankings" class="border border-gray-700 hover:border-white text-white font-teko text-2xl font-bold px-8 py-3 tracking-wider transition">
+            VIEW RANKINGS
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIDER STANDINGS FEATURE BANNER -->
+  <section id="riders" class="py-20 bg-[#0e1014] border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex justify-between items-end mb-8">
+        <div>
+          <div class="text-amber-400 font-teko text-lg tracking-widest">THE KINGDOM</div>
+          <h2 class="font-teko text-5xl font-bold text-white tracking-wider">RIDER STANDINGS</h2>
+        </div>
+        <a href="#rankings" class="font-teko text-lg text-amber-400 hover:underline flex items-center gap-1">ALL RIDERS &rarr;</a>
+      </div>
+
+      <!-- Feature Card -->
+      <div class="bg-[#12141a] border border-gray-800 rounded-xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+        <div class="max-w-xl">
+          <div class="text-amber-400 font-teko text-lg tracking-widest mb-1">THE TOKEN IS EVERYTHING</div>
+          <h3 class="font-teko text-5xl sm:text-6xl font-bold text-white leading-none mb-4">
+            WIN THE RACE. <br>TAKE THE TOKEN.
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            A rider's token represents their place in the King of the Half hierarchy. When a rider defeats a token holder, an admin transfers that token to the winner.
+          </p>
+        </div>
+
+        <div class="w-48 h-48 rounded-full border-2 border-amber-500/80 flex items-center justify-center shrink-0 bg-amber-500/5 shadow-[0_0_50px_rgba(245,158,11,0.1)]">
+          <span class="font-teko text-6xl font-bold text-amber-400 tracking-wider">KOTH</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NATIONAL RANKINGS / LEADERBOARD SECTION -->
+  <section id="rankings" class="py-20 bg-[#0b0c0e] border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-8">
+        <div class="text-amber-400 font-teko text-lg tracking-widest">COMPETE. CLIMB. CONQUER.</div>
+        <h2 class="font-teko text-6xl font-bold text-white tracking-wider">ALL RIDERS</h2>
+      </div>
+
+      <!-- Filter Controls -->
+      <form method="GET" action="/#rankings" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        <div>
+          <select name="group_class" onchange="this.form.submit()" class="w-full bg-[#12141a] border border-gray-800 rounded px-4 py-3 text-sm text-gray-200 focus:outline-none focus:border-amber-500">
+            <option value="">All Groups (Classes)</option>
+            <option value="Stock Motor" <%= currentGroup === 'Stock Motor' ? 'selected' : '' %>>Stock Motor</option>
+            <option value="Stage 1 Motor" <%= currentGroup === 'Stage 1 Motor' ? 'selected' : '' %>>Stage 1 Motor</option>
+            <option value="RWYB" <%= currentGroup === 'RWYB' ? 'selected' : '' %>>RWYB</option>
+          </select>
+        </div>
+
+        <div>
+          <input 
+            type="text" 
+            name="state" 
+            placeholder="All States (e.g. FL, CA)" 
+            value="<%= currentState %>" 
+            maxlength="2"
+            class="w-full bg-[#12141a] border border-gray-800 rounded px-4 py-3 text-sm text-gray-200 uppercase placeholder-gray-500 focus:outline-none focus:border-amber-500"
+          >
+        </div>
+
+        <div>
+          <select name="sortBy" onchange="this.form.submit()" class="w-full bg-[#12141a] border border-gray-800 rounded px-4 py-3 text-sm text-gray-200 focus:outline-none focus:border-amber-500">
+            <option value="wins" <%= currentSort === 'wins' ? 'selected' : '' %>>Most Wins</option>
+            <option value="win_rate" <%= currentSort === 'win_rate' ? 'selected' : '' %>>Best Win %</option>
+            <option value="tokens" <%= currentSort === 'tokens' ? 'selected' : '' %>>Most Tokens</option>
+          </select>
+        </div>
+      </form>
+
+      <!-- Section Title & Tabs -->
+      <div class="mb-6">
+        <div class="text-amber-400 font-teko text-lg tracking-widest">THE LEADERBOARD</div>
+        <h3 class="font-teko text-5xl font-bold text-white tracking-wider mb-4">NATIONAL RANKINGS</h3>
+        
+        <div class="flex items-center gap-2">
+          <a href="/?sortBy=wins#rankings" class="font-teko text-xl font-bold px-6 py-2 <%= currentSort === 'wins' ? 'bg-amber-400 text-black' : 'bg-[#12141a] text-gray-300 border border-gray-800' %>">WINS</a>
+          <a href="/?sortBy=win_rate#rankings" class="font-teko text-xl font-bold px-6 py-2 <%= currentSort === 'win_rate' ? 'bg-amber-400 text-black' : 'bg-[#12141a] text-gray-300 border border-gray-800' %>">WIN %</a>
+        </div>
+      </div>
+
+      <!-- Rankings Table -->
+      <div class="overflow-x-auto bg-[#12141a] border border-gray-800 rounded-lg">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-[#0e1014] text-gray-400 uppercase text-[11px] font-mono tracking-widest border-b border-gray-800">
+            <tr>
+              <th class="p-4">#</th>
+              <th class="p-4">RIDER</th>
+              <th class="p-4">STATE</th>
+              <th class="p-4">GROUP</th>
+              <th class="p-4">W</th>
+              <th class="p-4">L</th>
+              <th class="p-4">WIN %</th>
+              <th class="p-4 text-amber-400">TOKEN</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800">
+            <% if (users.length === 0) { %>
+              <tr>
+                <td colspan="8" class="p-8 text-center text-gray-500">No riders registered yet. <a href="/register" class="text-amber-400 underline">Register the first rider</a>.</td>
+              </tr>
+            <% } %>
+            <% users.forEach((u, i) => { %>
+              <tr class="hover:bg-gray-800/40 transition <%= u.is_eliminated ? 'opacity-60 bg-red-950/10' : '' %>">
+                <td class="p-4 font-mono font-bold text-gray-400"><%= i + 1 %></td>
+                <td class="p-4 flex items-center gap-3">
+                  <img 
+                    src="<%= u.photo_url %>" 
+                    alt="<%= u.name %>" 
+                    class="w-10 h-10 rounded object-cover border border-gray-700 <%= u.is_eliminated ? 'eliminated-photo' : '' %>"
+                    onerror="this.src='https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=150&auto=format&fit=crop&q=80'"
+                  >
+                  <div>
+                    <div class="font-bold text-white <%= u.is_eliminated ? 'line-through text-gray-400' : '' %>"><%= u.name %></div>
+                    <div class="text-[10px] font-mono text-gray-500"><%= u.id %></div>
+                  </div>
+                </td>
+                <td class="p-4 font-mono uppercase font-semibold text-gray-300"><%= u.state %></td>
+                <td class="p-4 text-xs font-semibold text-amber-400/90"><%= u.group_class %></td>
+                <td class="p-4 font-mono font-bold text-emerald-400"><%= u.wins %></td>
+                <td class="p-4 font-mono font-bold text-red-400"><%= u.losses %></td>
+                <td class="p-4 font-mono font-bold text-blue-400"><%= u.win_percentage %>%</td>
+                <td class="p-4 font-mono font-bold text-amber-400"><%= u.tokens %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RACE CLASSES SECTION -->
+  <section id="classes" class="py-20 bg-[#0e1014] border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12">
+        <div class="text-amber-400 font-teko text-lg tracking-widest">CHOOSE YOUR BATTLE</div>
+        <h2 class="font-teko text-6xl font-bold text-white tracking-wider">RACE CLASSES</h2>
+      </div>
+
+      <!-- 3 Main Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        
+        <!-- Class 01 -->
+        <div class="bg-[#12141a] border border-gray-800 p-8 rounded-xl flex flex-col justify-between">
+          <div>
+            <div class="text-amber-400 font-mono text-xs font-bold mb-2">01</div>
+            <h3 class="font-teko text-4xl font-bold text-white mb-6">STOCK MOTOR</h3>
+            <ul class="space-y-3 text-xs text-gray-300">
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> No fuel regulation</li>
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> No power adder</li>
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> No work to top or bottom of motor</li>
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> Peripheral modified parts permitted</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Class 02 -->
+        <div class="bg-[#12141a] border border-gray-800 p-8 rounded-xl flex flex-col justify-between">
+          <div>
+            <div class="text-amber-400 font-mono text-xs font-bold mb-2">02</div>
+            <h3 class="font-teko text-4xl font-bold text-white mb-6">STAGE 1 MOTOR</h3>
+            <ul class="space-y-3 text-xs text-gray-300">
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> No fuel regulation</li>
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> No power adder</li>
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> Modified top end</li>
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> Stock crank and pistons</li>
+              <li class="flex items-center gap-2"><span class="text-amber-400">—</span> Peripheral modified parts permitted</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Class 03 -->
+        <div class="bg-[#12141a] border border-gray-800 p-8 rounded-xl flex flex-col justify-between">
+          <div>
+            <div class="text-amber-400 font-mono text-xs font-bold mb-2">03</div>
+            <h3 class="font-teko text-4xl font-bold text-white mb-4">RWYB</h3>
+            <div class="font-teko text-2xl font-bold text-amber-400 mb-4">NO CRYING. JUST RACE WHAT YOU GOT!</div>
+            <p class="text-xs text-gray-400">No class inspection. Power adders permitted.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sub Definitions -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[#12141a] border border-gray-800/60 p-5 rounded-lg">
+          <div class="text-amber-400 font-teko text-sm tracking-wider mb-1">POWER ADDER</div>
+          <p class="text-xs text-gray-400">Supercharger · Turbo · NoS</p>
+        </div>
+        <div class="bg-[#12141a] border border-gray-800/60 p-5 rounded-lg">
+          <div class="text-amber-400 font-teko text-sm tracking-wider mb-1">PERIPHERAL MODIFIED PARTS</div>
+          <p class="text-xs text-gray-400">Any part not considered part of the motor, including items outside the cylinder head, valves, springs, cams, block, pistons and crank.</p>
+        </div>
+        <div class="bg-[#12141a] border border-gray-800/60 p-5 rounded-lg">
+          <div class="text-amber-400 font-teko text-sm tracking-wider mb-1">1000CC SHOOTOUT</div>
+          <p class="text-xs text-gray-400">Hayabusa, Ducati V4, Aprilia RSV4 and ZX14 are permitted in RWYB.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RULES SECTION -->
+  <section id="rules" class="py-20 bg-[#0b0c0e] border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12">
+        <div class="text-amber-400 font-teko text-lg tracking-widest">READ BEFORE YOU RACE</div>
+        <h2 class="font-teko text-6xl font-bold text-white tracking-wider">RULES</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">01</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">INSPECTION</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            RWYB is exempt from inspection. If a class violation is reasonably suspected, the loser must raise the claim immediately after the race. The host determines whether inspection is warranted. Inspection is limited to dismantling necessary to visibly verify the claim.
+          </p>
+        </div>
+
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">02</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">DISQUALIFICATION</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Jumping the line, rolling, crossing the line, an inoperable bike, failure to appear, modification above class, or denying a reasonable inspection can result in disqualification and token forfeiture.
+          </p>
+        </div>
+
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">03</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">RACE FORMAT</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Weather permitting the race will be a marked 1/2 mile, 40mph roll for one pass only at a safe and private location at a specific date and time only shared to shootout racers.
+          </p>
+        </div>
+
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">04</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">CALLOUTS</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Callouts take priority and must occur within two weeks. If there is no callout, racers receive an assigned slot. Failure to show or an unavailable bike results in disqualification and token forfeiture.
+          </p>
+        </div>
+
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">05</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">HOSTS</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            A local host is selected for each area. Hosts enforce rules, manage tokens, and approve or deny inspection requests. Hosts are expected to remain impartial.
+          </p>
+        </div>
+
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">06</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">RACERS</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Racers are responsible for keeping their token(s) in a safe place and present it to the host prior to the race. Racers must have the means to reliably attend race events.
+          </p>
+        </div>
+
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">07</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">EXEMPTIONS</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            This is a 1000cc shootout. Hayabusa, Ducati V4, Aprilia RSV4 and ZX14 are allowed in RWYB. A qualified replacement may fill an assigned slot only once if the original bike cannot race.
+          </p>
+        </div>
+
+        <div class="bg-[#12141a] border border-gray-800 p-6 rounded-xl">
+          <div class="text-amber-400 font-mono text-xs font-bold mb-2">08</div>
+          <h3 class="font-teko text-3xl font-bold text-white mb-3">WEATHER & PRIVACY</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Weather cancellations are announced three days prior when possible. Racers must not share private race-location details. This protects the event, racers and property.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="bg-[#12141a] border-l-4 border-amber-400 p-4 text-xs font-semibold text-gray-300">
+        <strong class="text-amber-400 uppercase tracking-wider">SAFETY FIRST:</strong> All event activity must comply with applicable law, private-property requirements, and the host's safety procedures. The website does not disclose race locations or times publicly.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Q&A ACCORDION SECTION -->
+  <section id="qa" class="py-20 bg-[#0e1014] border-b border-gray-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12">
+        <div class="text-amber-400 font-teko text-lg tracking-widest">THE ANSWERS</div>
+        <h2 class="font-teko text-6xl font-bold text-white tracking-wider">Q&A</h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="group bg-[#12141a] border border-gray-800 rounded-lg p-5">
+          <summary class="font-teko text-2xl font-bold text-white cursor-pointer flex justify-between items-center list-none">
+            <span>I LOST MY TOKENS. HOW CAN I REPLACE THEM?</span>
+            <span class="text-amber-400 font-mono group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-xs text-gray-400 leading-relaxed pt-3 border-t border-gray-800">
+            Every racer is responsible for keeping their tokens safe. Tokens are unique and cannot be replaced. Loss of a token disqualifies a rider from racing, and a digital token will be awarded to the winner.
+          </p>
+        </details>
+
+        <details class="group bg-[#12141a] border border-gray-800 rounded-lg p-5">
+          <summary class="font-teko text-2xl font-bold text-white cursor-pointer flex justify-between items-center list-none">
+            <span>CAN I HAVE MY BIKE TUNED DURING THE SHOOTOUT?</span>
+            <span class="text-amber-400 font-mono group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-xs text-gray-400 leading-relaxed pt-3 border-t border-gray-800">
+            Yes. Tuning is allowed at any time.
+          </p>
+        </details>
+
+        <details class="group bg-[#12141a] border border-gray-800 rounded-lg p-5">
+          <summary class="font-teko text-2xl font-bold text-white cursor-pointer flex justify-between items-center list-none">
+            <span>CAN I CHANGE THE JOCKEY?</span>
+            <span class="text-amber-400 font-mono group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-xs text-gray-400 leading-relaxed pt-3 border-t border-gray-800">
+            Yes. As long as you are ready to race at your slotted time, it does not matter who is on the bike.
+          </p>
+        </details>
+
+        <details class="group bg-[#12141a] border border-gray-800 rounded-lg p-5">
+          <summary class="font-teko text-2xl font-bold text-white cursor-pointer flex justify-between items-center list-none">
+            <span>CAN I TRANSFER TOKENS?</span>
+            <span class="text-amber-400 font-mono group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-xs text-gray-400 leading-relaxed pt-3 border-t border-gray-800">
+            No. Assigned and earned tokens remain with you unless you lose a race or are disqualified.
+          </p>
+        </details>
+
+        <details class="group bg-[#12141a] border border-gray-800 rounded-lg p-5">
+          <summary class="font-teko text-2xl font-bold text-white cursor-pointer flex justify-between items-center list-none">
+            <span>CAN I SWITCH BIKES?</span>
+            <span class="text-amber-400 font-mono group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-xs text-gray-400 leading-relaxed pt-3 border-t border-gray-800">
+            No. The bike entered is tied to the unique token.
+          </p>
+        </details>
+
+        <details class="group bg-[#12141a] border border-gray-800 rounded-lg p-5">
+          <summary class="font-teko text-2xl font-bold text-white cursor-pointer flex justify-between items-center list-none">
+            <span>I HAVE MULTIPLE BIKES. CAN I ENTER ALL OF THEM?</span>
+            <span class="text-amber-400 font-mono group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-xs text-gray-400 leading-relaxed pt-3 border-t border-gray-800">
+            Yes, but only if they are entered in different classes. You cannot have more than one bike in each class.
+          </p>
+        </details>
+
+        <details class="group bg-[#12141a] border border-gray-800 rounded-lg p-5">
+          <summary class="font-teko text-2xl font-bold text-white cursor-pointer flex justify-between items-center list-none">
+            <span>WHAT IF MY BIKE GETS DAMAGED?</span>
+            <span class="text-amber-400 font-mono group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="mt-3 text-xs text-gray-400 leading-relaxed pt-3 border-t border-gray-800">
+            That is part of racing. The event hopes for a safe and successful race each time, but the owner is responsible for loss or damage to the bike.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT BANNER -->
+  <section class="bg-amber-400 py-16 text-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <div class="font-teko text-lg font-bold tracking-widest text-black/70">QUESTIONS?</div>
+        <h2 class="font-teko text-6xl font-bold tracking-tight">CONTACT THE KINGDOM.</h2>
+      </div>
+      <a href="mailto:info@kingofthehalf.com" class="border-2 border-black hover:bg-black hover:text-amber-400 font-teko text-2xl font-bold px-8 py-3 tracking-wider transition">
+        EMAIL THE TEAM
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0b0c0e] py-8 text-center text-xs text-gray-500 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>&copy; 2026 KING OF THE 1/2</div>
+      <div class="font-mono text-[10px] tracking-widest">1/2 MILE SPORTBIKE SHOOTOUT - USA</div>
+    </div>
+  </footer>
+
+</body>
+</html>
